@@ -10,9 +10,11 @@
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <style>
-        #map {
-            width: 1068px;
-            height: 601px;
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
         }
         </style>
         <title></title>
@@ -22,6 +24,7 @@
         </div>
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/multi-style-layer.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
         <script src="js/leaflet.pattern.js"></script>
         <script src="js/leaflet-hash.js"></script>
@@ -30,8 +33,8 @@
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
         <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
-        <script src="data/industri_Kendal_1.js"></script>
-        <script src="data/IDN_roads_2.js"></script>
+        <script src="data/JALAN_LN_25K_1.js"></script>
+        <script src="data/industri_Kendal_2.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -50,7 +53,7 @@
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[-6.866677350182772,110.77869272327095],[-6.756942915453865,110.97400922913117]]);
+        }).fitBounds([[-7.04493794365222,110.56985943607476],[-6.5802832809669285,111.39722581584135]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
         L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
@@ -63,7 +66,218 @@
         });
         layer_GoogleImagery_0;
         map.addLayer(layer_GoogleImagery_0);
-        function pop_industri_Kendal_1(feature, layer) {
+        function pop_JALAN_LN_25K_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAMRJL'] !== null ? Autolinker.link(String(feature.properties['NAMRJL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['KONRJL'] !== null ? Autolinker.link(String(feature.properties['KONRJL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['MATRJL'] !== null ? Autolinker.link(String(feature.properties['MATRJL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FGSRJL'] !== null ? Autolinker.link(String(feature.properties['FGSRJL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['UTKRJL'] !== null ? Autolinker.link(String(feature.properties['UTKRJL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TOLRJL'] !== null ? Autolinker.link(String(feature.properties['TOLRJL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WLYRJL'] !== null ? Autolinker.link(String(feature.properties['WLYRJL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AUTRJL'] !== null ? Autolinker.link(String(feature.properties['AUTRJL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['KLSRJL'] !== null ? Autolinker.link(String(feature.properties['KLSRJL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SPCRJL'] !== null ? Autolinker.link(String(feature.properties['SPCRJL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['JPARJL'] !== null ? Autolinker.link(String(feature.properties['JPARJL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ARHRJL'] !== null ? Autolinker.link(String(feature.properties['ARHRJL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['STARJL'] !== null ? Autolinker.link(String(feature.properties['STARJL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['KLLRJL'] !== null ? Autolinker.link(String(feature.properties['KLLRJL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['MEDRJL'] !== null ? Autolinker.link(String(feature.properties['MEDRJL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LOCRJL'] !== null ? Autolinker.link(String(feature.properties['LOCRJL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['JARRJL'] !== null ? Autolinker.link(String(feature.properties['JARRJL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FCODE'] !== null ? Autolinker.link(String(feature.properties['FCODE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['REMARK'] !== null ? Autolinker.link(String(feature.properties['REMARK'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SRS_ID'] !== null ? Autolinker.link(String(feature.properties['SRS_ID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LCODE'] !== null ? Autolinker.link(String(feature.properties['LCODE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['METADATA'] !== null ? Autolinker.link(String(feature.properties['METADATA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHAPE_Leng'] !== null ? Autolinker.link(String(feature.properties['SHAPE_Leng'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_JALAN_LN_25K_1_0(feature) {
+            switch(String(feature.properties['REMARK'])) {
+                case 'Jalan Arteri':
+                    return {
+                pane: 'pane_JALAN_LN_25K_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 6.0,
+                fillOpacity: 0,
+            }
+                    break;
+                case 'Jalan Kolektor':
+                    return {
+                pane: 'pane_JALAN_LN_25K_1',
+                opacity: 1,
+                color: 'rgba(232,170,23,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+            }
+                    break;
+                case 'Jalan Lain':
+                    return {
+                pane: 'pane_JALAN_LN_25K_1',
+                opacity: 1,
+                color: 'rgba(186,16,220,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+            }
+                    break;
+                case 'Jalan Lokal':
+                    return {
+                pane: 'pane_JALAN_LN_25K_1',
+                opacity: 1,
+                color: 'rgba(124,181,216,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+            }
+                    break;
+                case 'Jalan Setapak':
+                    return {
+                pane: 'pane_JALAN_LN_25K_1',
+                opacity: 1,
+                color: 'rgba(175,157,57,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_JALAN_LN_25K_1',
+                opacity: 1,
+                color: 'rgba(232,79,102,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+            }
+                    break;
+            }
+        }
+        function style_JALAN_LN_25K_1_1(feature) {
+            switch(String(feature.properties['REMARK'])) {
+                case 'Jalan Arteri':
+                    return {
+                pane: 'pane_JALAN_LN_25K_1',
+                opacity: 1,
+                color: 'rgba(228,66,26,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+            }
+                    break;
+                case 'Jalan Kolektor':
+                    return {
+                pane: 'pane_JALAN_LN_25K_1',
+            }
+                    break;
+                case 'Jalan Lain':
+                    return {
+                pane: 'pane_JALAN_LN_25K_1',
+            }
+                    break;
+                case 'Jalan Lokal':
+                    return {
+                pane: 'pane_JALAN_LN_25K_1',
+            }
+                    break;
+                case 'Jalan Setapak':
+                    return {
+                pane: 'pane_JALAN_LN_25K_1',
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_JALAN_LN_25K_1',
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_JALAN_LN_25K_1');
+        map.getPane('pane_JALAN_LN_25K_1').style.zIndex = 401;
+        map.getPane('pane_JALAN_LN_25K_1').style['mix-blend-mode'] = 'normal';
+        var layer_JALAN_LN_25K_1 = new L.geoJson.multiStyle(json_JALAN_LN_25K_1, {
+            attribution: '',
+            pane: 'pane_JALAN_LN_25K_1',
+            onEachFeature: pop_JALAN_LN_25K_1,
+            styles: [style_JALAN_LN_25K_1_0,style_JALAN_LN_25K_1_1,]
+        });
+        bounds_group.addLayer(layer_JALAN_LN_25K_1);
+        map.addLayer(layer_JALAN_LN_25K_1);
+        function pop_industri_Kendal_2(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (i in e.target._eventParents) {
@@ -80,90 +294,38 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_industri_Kendal_1_0() {
+        function style_industri_Kendal_2_0() {
             return {
-                pane: 'pane_industri_Kendal_1',
-                radius: 4.0,
+                pane: 'pane_industri_Kendal_2',
+                radius: 5.1999999999999975,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1,
+                weight: 2.0,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(190,207,80,1.0)',
+                fillColor: 'rgba(203,33,215,1.0)',
             }
         }
-        map.createPane('pane_industri_Kendal_1');
-        map.getPane('pane_industri_Kendal_1').style.zIndex = 401;
-        map.getPane('pane_industri_Kendal_1').style['mix-blend-mode'] = 'normal';
-        var layer_industri_Kendal_1 = new L.geoJson(json_industri_Kendal_1, {
+        map.createPane('pane_industri_Kendal_2');
+        map.getPane('pane_industri_Kendal_2').style.zIndex = 402;
+        map.getPane('pane_industri_Kendal_2').style['mix-blend-mode'] = 'normal';
+        var layer_industri_Kendal_2 = new L.geoJson(json_industri_Kendal_2, {
             attribution: '',
-            pane: 'pane_industri_Kendal_1',
-            onEachFeature: pop_industri_Kendal_1,
+            pane: 'pane_industri_Kendal_2',
+            onEachFeature: pop_industri_Kendal_2,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_industri_Kendal_1_0(feature));
+                return L.circleMarker(latlng, style_industri_Kendal_2_0(feature));
             },
         });
-        bounds_group.addLayer(layer_industri_Kendal_1);
-        map.addLayer(layer_industri_Kendal_1);
-        function pop_IDN_roads_2(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['MED_DESCRI'] !== null ? Autolinker.link(String(feature.properties['MED_DESCRI'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['RTT_DESCRI'] !== null ? Autolinker.link(String(feature.properties['RTT_DESCRI'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['F_CODE_DES'] !== null ? Autolinker.link(String(feature.properties['F_CODE_DES'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ISO'] !== null ? Autolinker.link(String(feature.properties['ISO'])) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ISOCOUNTRY'] !== null ? Autolinker.link(String(feature.properties['ISOCOUNTRY'])) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_IDN_roads_2_0() {
-            return {
-                pane: 'pane_IDN_roads_2',
-                opacity: 1,
-                color: 'rgba(224,22,0,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 1.0,
-                fillOpacity: 0,
-            }
-        }
-        map.createPane('pane_IDN_roads_2');
-        map.getPane('pane_IDN_roads_2').style.zIndex = 402;
-        map.getPane('pane_IDN_roads_2').style['mix-blend-mode'] = 'normal';
-        var layer_IDN_roads_2 = new L.geoJson(json_IDN_roads_2, {
-            attribution: '',
-            pane: 'pane_IDN_roads_2',
-            onEachFeature: pop_IDN_roads_2,
-            style: style_IDN_roads_2_0,
-        });
-        bounds_group.addLayer(layer_IDN_roads_2);
-        map.addLayer(layer_IDN_roads_2);
+        bounds_group.addLayer(layer_industri_Kendal_2);
+        map.addLayer(layer_industri_Kendal_2);
         var osmGeocoder = new L.Control.Geocoder({
             collapsed: true,
             position: 'topleft',
@@ -175,7 +337,7 @@
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .title += 'Search for a place';
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/IDN_roads_2.png" /> IDN_roads': layer_IDN_roads_2,'<img src="legend/industri_Kendal_1.png" /> industri_Kendal': layer_industri_Kendal_1,"Google Imagery": layer_GoogleImagery_0,}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/industri_Kendal_2.png" /> industri_Kendal': layer_industri_Kendal_2,'JALAN_LN_25K<br /><table><tr><td style="text-align: center;"><img src="legend/JALAN_LN_25K_1_JalanArteri0.png" /></td><td>Jalan Arteri</td></tr><tr><td style="text-align: center;"><img src="legend/JALAN_LN_25K_1_JalanKolektor1.png" /></td><td>Jalan Kolektor</td></tr><tr><td style="text-align: center;"><img src="legend/JALAN_LN_25K_1_JalanLain2.png" /></td><td>Jalan Lain</td></tr><tr><td style="text-align: center;"><img src="legend/JALAN_LN_25K_1_JalanLokal3.png" /></td><td>Jalan Lokal</td></tr><tr><td style="text-align: center;"><img src="legend/JALAN_LN_25K_1_JalanSetapak4.png" /></td><td>Jalan Setapak</td></tr><tr><td style="text-align: center;"><img src="legend/JALAN_LN_25K_1_5.png" /></td><td></td></tr></table>': layer_JALAN_LN_25K_1,"Google Imagery": layer_GoogleImagery_0,}).addTo(map);
         setBounds();
         </script>
     </body>
